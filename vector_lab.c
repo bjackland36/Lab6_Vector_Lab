@@ -5,7 +5,6 @@ Description:
 Compile: gcc -Wall vector_functions.c vector_data.c vector_lab.c -o vector_lab
 Run: ./vector_lab
 */
-//printf("%c = %.2f, %.2f, %.2f\n", currentVector.name, currentVector.x, currentVector.y, currentVector.z);
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

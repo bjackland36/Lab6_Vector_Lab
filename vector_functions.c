@@ -1,3 +1,7 @@
+/**
+File: vector_functions.c
+Author: Blake Ackland
+ */
 #include "vector_functions.h"
 #include "vector.h"
 

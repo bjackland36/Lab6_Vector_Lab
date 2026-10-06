@@ -1,4 +1,8 @@
-#ifndef VECTOR_FUNCTIONS_H
+/**
+File: vector_functions.h
+Author: Blake Ackland
+ */
+ #ifndef VECTOR_FUNCTIONS_H
 #define VECTOR_FUNCTIONS_H
 
 #include "vector.h"
