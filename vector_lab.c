@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
                     }
 
                     //Check if there is an operator at token 4
-                    else if (token4 != NULL && (strcmp(token4, "+") == 0 || strcmp(token4, "-") == 0))
+                    else if (token4 != NULL && (strcmp(token4, "+") == 0 || strcmp(token4, "-") == 0 || strcmp(token4, "cross") == 0 || strcmp(token4, "dot") == 0 ))
                     {
                         //Check token3 is >1 char or token 5 is not there or token 5 is >1 char
                         if (token3[1] != '\0' || token5 == NULL || token5[1] != '\0')
@@ -178,6 +178,10 @@ int main(int argc, char *argv[])
                             {
                                 printf("Vector '%c' not found.\n", token5[0]);
                             }
+                            else if (strcmp(token4, "dot") == 0)
+                            {
+                                printf("Vectors cannot be set equal to a scalar value (dot product produces scalar)\n");
+                            }
                             
                             //If vectors do exist
                             else
@@ -189,9 +193,13 @@ int main(int argc, char *argv[])
                                 {
                                     newVect = add(vect1, vect2);
                                 }
-                                else
+                                else if (strcmp(token4, "-") == 0)
                                 {
                                     newVect = sub(vect1, vect2);
+                                }
+                                else if (strcmp(token4, "cross") == 0)
+                                {
+                                    newVect = cross(vect1, vect2);
                                 }
 
                                 newVect.name = token1[0];
