@@ -1,8 +1,11 @@
 /**
 File: vector_functions.h
 Author: Blake Ackland
+Date: 9/29/2026
+Description: Header file for vector_functions.c
  */
- #ifndef VECTOR_FUNCTIONS_H
+ //Header guard
+#ifndef VECTOR_FUNCTIONS_H
 #define VECTOR_FUNCTIONS_H
 
 #include "vector.h"
