@@ -8,6 +8,7 @@ Description: Header file for vector_data.c
 #ifndef VECTOR_DATA_H
 #define VECTOR_DATA_H
 
+#include <stdlib.h>
 #include "vector.h"
 
 int addVect(vector new);

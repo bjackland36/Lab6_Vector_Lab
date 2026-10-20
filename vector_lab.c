@@ -26,8 +26,11 @@ int main(int argc, char *argv[])
     if (argc == 2 && strcmp(argv[1], "-h") == 0)
     {
         printf("Usage of vector_lab:\n");
-        printf("Enter vector commands such as 'a = 1 2 3' or 'a + b'\n");
-        printf("Commands: -h, quit, list, clear\n\n");
+        printf("Type 'quit' to quit\n");
+                    printf("Type 'list' to list vectors in memory\n");
+                    printf("Type 'clear' to clear vector memory\n");
+                    printf("Use 'a + b', 'a - b', 'a * 2', '2 * a', 'a dot b', or 'a cross b'\n");
+                    printf("Assignments: 'a = 1 2 3', 'a = b', 'a = b + c', 'a = 2 * b', or 'a = b cross c'\n\n");
     }
 
     //Print welcome message
@@ -82,7 +85,7 @@ int main(int argc, char *argv[])
                     printf("Type 'list' to list vectors in memory\n");
                     printf("Type 'clear' to clear vector memory\n");
                     printf("Use 'a + b', 'a - b', 'a * 2', '2 * a', 'a dot b', or 'a cross b'\n");
-                    printf("Assignments: 'a = 1 2 3', 'a = b', 'a = b + c', or 'a = 2 * b'\n");
+                    printf("Assignments: 'a = 1 2 3', 'a = b', 'a = b + c', 'a = 2 * b', or 'a = b cross c'\n");
                 }
 
                 //List the vectors in memory
@@ -538,6 +541,8 @@ int main(int argc, char *argv[])
             }
         }
     }
+    //Clear memory
+    clearStorage();
     //Default 0 return value
     return 0;
 }

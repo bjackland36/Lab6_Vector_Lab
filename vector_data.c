@@ -6,15 +6,13 @@ Description: Vector storage/memory management. Allows for adding a vector to mem
              clearing vector memory, find a vector in memory from its name, find how
              much of vector memory is used, and find vector based on its position in
              memory.
- */
+*/
 #include "vector_data.h"
 
-//Constant for 10 maximum vectors
-#define MAX_VECTORS 10
-
 //Static to avoid global variables while giving vector_data.c shared vars
-static vector vectorStorage[MAX_VECTORS]; //vector storage space
-static int storageUsed; //count of how much storage is used
+static vector *vectorStorage = NULL; //vector storage space
+static int storageUsed = 0; //count of how much storage is used
+static int storageCapacity = 0; //Count of how much total storage room is allowed
 
 //Adds a vector to the storage space
 //Returns:
@@ -23,6 +21,9 @@ static int storageUsed; //count of how much storage is used
 //2 = existing vector replaced
 int addVect(vector new)
 {
+    int newCapacity;
+    vector *newStorage;
+    //Replace vector
     for (int i = 0; i < storageUsed; i++)
     {
         if (vectorStorage[i].name == new.name)
@@ -31,10 +32,33 @@ int addVect(vector new)
             return 2;
         }
     }
-    if (storageUsed >= MAX_VECTORS)
+
+    //Allocate array the first time a vector is added
+    if (storageCapacity == 0)
     {
-        return 0;
+        newCapacity = 4;
+        newStorage = malloc(newCapacity * sizeof *vectorStorage);
+        if (newStorage == NULL)
+        {
+            return 0;
+        }
+        vectorStorage = newStorage;
+        storageCapacity = newCapacity;
     }
+
+    //Expand array when its full
+    if (storageUsed == storageCapacity)
+    {
+        newCapacity = storageCapacity * 2;
+        newStorage = realloc(vectorStorage, newCapacity * sizeof *vectorStorage);
+        if (newStorage == NULL)
+        {
+            return 0;
+        }
+        vectorStorage = newStorage;
+        storageCapacity = newCapacity;
+    }
+
     vectorStorage[storageUsed] = new;
     storageUsed++;
     return 1;
@@ -58,7 +82,10 @@ vector findVect(char name)
 //Clears vector storage storage
 void clearStorage(void)
 {
+    free(vectorStorage);
+    vectorStorage = NULL;
     storageUsed = 0;
+    storageCapacity = 0;
 }
 
 //Returns number of vectors in storage
