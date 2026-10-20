@@ -8,7 +8,7 @@ Description: Main runnable program for vector calculator. If ran with command-li
              vectors as well as taking the dot and cross product between them. Additionally, scalar 
              multiplication of a vector. Uses the struct vector from vector.h and organizes multiple
              vector data in vector_data. Vector math defined in vector_functions.
-Compile: gcc -Wall vector_functions.c vector_data.c vector_lab.c -o vector_lab
+Compile: gcc -Wall vector_functions.c vector_data.c vector_lab.c file_parser.c -o vector_lab
 Run: ./vector_lab
 */
 #include <stdio.h>
@@ -18,6 +18,7 @@ Run: ./vector_lab
 #include "vector_functions.h"
 #include "vector_data.h"
 #include "vector.h"
+#include "file_parser.h"
 
 //Take args to allow for '-h' command-line argument
 int main(int argc, char *argv[])
@@ -27,10 +28,12 @@ int main(int argc, char *argv[])
     {
         printf("Usage of vector_lab:\n");
         printf("Type 'quit' to quit\n");
-                    printf("Type 'list' to list vectors in memory\n");
-                    printf("Type 'clear' to clear vector memory\n");
-                    printf("Use 'a + b', 'a - b', 'a * 2', '2 * a', 'a dot b', or 'a cross b'\n");
-                    printf("Assignments: 'a = 1 2 3', 'a = b', 'a = b + c', 'a = 2 * b', or 'a = b cross c'\n\n");
+        printf("Type 'load' followed by the CSV filepath (example: 'load vectors.csv') to load a CSV file into vector memory\n");
+        printf("Type 'save' followed by desired filename (example: 'save vectors.csv' to save vector memory in a CSV file\n");
+        printf("Type 'list' to list vectors in memory\n");
+        printf("Type 'clear' to clear vector memory\n");
+        printf("Use 'a + b', 'a - b', 'a * 2', '2 * a', 'a dot b', or 'a cross b'\n");
+        printf("Assignments: 'a = 1 2 3', 'a = b', 'a = b + c', 'a = 2 * b', or 'a = b cross c'\n\n");
     }
 
     //Print welcome message
@@ -78,14 +81,52 @@ int main(int argc, char *argv[])
                     active = 0; //End program
                 }
 
+                //List command
+                if (strcmp(token1, "load") == 0)
+                {
+                    printf("Note: Contents of CSV will be added to existing storage\n");
+
+                    if (token2 == NULL || token3 != NULL)
+                    {
+                        printf("Use command of syntax: 'load vectors.csv'\n");
+                    }
+                    else
+                    {
+                        if (loadFile(token2) == 1)
+                        {
+                            printf ("Error: could not load file because file does not exist\n");
+                        }
+                        else
+                        {
+                            
+                        }
+                    }
+                }
+
+                //Save command
+                if (strcmp(token1, "save") == 0)
+                {
+                    printf("Note: Contents of file will be overwritten\n");
+                    if (token2 == NULL || token3 != NULL)
+                    {
+                        printf("Use command of syntax: 'save vectors.csv'\n");
+                    }
+                    else
+                    {
+                        saveFile(token2);
+                    }
+                }
+
                 //Show the help commands
                 else if (strcmp(token1, "-h") == 0)
                 {
                     printf("Type 'quit' to quit\n");
+                    printf("Type 'load' followed by the CSV filepath (example: 'load vectors.csv') to load a CSV file into vector memory\n");                    printf("Type 'save' to save vector memory in a CSV file\n");
+                    printf("Type 'save' followed by desired filename (example: 'save vectors.csv' to save vector memory in a CSV file\n");
                     printf("Type 'list' to list vectors in memory\n");
                     printf("Type 'clear' to clear vector memory\n");
                     printf("Use 'a + b', 'a - b', 'a * 2', '2 * a', 'a dot b', or 'a cross b'\n");
-                    printf("Assignments: 'a = 1 2 3', 'a = b', 'a = b + c', 'a = 2 * b', or 'a = b cross c'\n");
+                    printf("Assignments: 'a = 1 2 3', 'a = b', 'a = b + c', 'a = 2 * b', or 'a = b cross c'\n\n");
                 }
 
                 //List the vectors in memory

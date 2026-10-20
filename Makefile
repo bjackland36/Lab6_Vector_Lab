@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES= vector_functions.c vector_data.c vector_lab.c
+SOURCES= vector_functions.c vector_data.c vector_lab.c file_parser.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE= vector_lab
 

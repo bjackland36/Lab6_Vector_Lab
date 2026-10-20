@@ -36,7 +36,7 @@ int addVect(vector new)
     //Allocate array the first time a vector is added
     if (storageCapacity == 0)
     {
-        newCapacity = 4;
+        newCapacity = 2;
         newStorage = malloc(newCapacity * sizeof *vectorStorage);
         if (newStorage == NULL)
         {
