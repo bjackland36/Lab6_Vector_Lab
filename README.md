@@ -1,10 +1,12 @@
 # Lab6_Vector_Lab
-Last Update to README:
+**Last Update to README:**
+
 10/20/2026 by Blake Ackland
 
 ## Description of Program:
 
 This program is a vector calculator. When executed, the program will display a welcome message and a help command, followed by a user input prompt. If the program is invoked with command-line argument '-h' it will display a summary of program usage before running as it would otherwise. User can create new vectors and perform vector math. Vectors are stored in a dynamic array database. The database can be saved as a CSV file. Additionally, CSV files of proper format containing vector information on each line can be loaded into the program for use. This program implements add, subtract, scalar multiply, dot product, and cross product functionalities.
+
 *Note: a limitation of this program is that vector names can only be 1 character*
 
 ## Build Instructions:
@@ -16,13 +18,14 @@ To run this program, there is an option of './vector_lab' which will run the sta
 
 ## Program Commands:
 
-This program supports the following commands:
-- quit - terminates program
-- load filename.csv - load contents of a CSV file into vector storage
-- save filename.csv - load contents of current session vector storage into new CSV file
-- list - list vectors in current session's vector storage
-- clear - clear current session's vector storage
- _(For the following, characters and numbers are for example)_
+**This program supports the following commands:**
+- 'quit' - terminates program
+- 'load filename.csv' - load contents of a CSV file into vector storage
+- 'save filename.csv' - load contents of current session vector storage into new CSV file
+- 'list' - list vectors in current session's vector storage
+- 'clear' - clear current session's vector storage
+
+ _(For the following, characters and numbers are for example)_  
 - 'a' - lists contents of vector a
 - 'a = b' - copies values from vector b into vector a
 - 'a + b' - returns sum of a + b   
