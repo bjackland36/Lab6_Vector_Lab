@@ -95,15 +95,18 @@ int main(int argc, char *argv[])
                         int error = loadFile(token2);
                         if (error == 1)
                         {
+                            //File not found
                             printf ("Error: File not found\n");
                         }
                         else if (error == 2)
                         {
+                            //File improperly formatted
                             printf("Error: CSV file not properly formatted\n");
                             printf("Vector storage cleared.\n");
                         }
                         else
                         {
+                            //Success
                             printf("Vector storage cleared!\n");
                             printf("'%s' added to vector storage!\n", token2);
                         }
@@ -123,10 +126,12 @@ int main(int argc, char *argv[])
                         int error = saveFile(token2);
                         if (error == 1)
                         {
+                            //Save error
                             printf ("Error: Unable to write to file\n");
                         }
                         else
                         {
+                            //Success
                             printf("'%s' created!\n", token2);
                         }
                     }
