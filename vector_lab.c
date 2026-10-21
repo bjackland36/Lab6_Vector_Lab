@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
     {
         printf("Usage of vector_lab:\n");
         printf("Type 'quit' to quit\n");
-        printf("Type 'load' followed by the CSV filepath (example: 'load vectors.csv') to load a CSV file into vector memory\n");
-        printf("Type 'save' followed by desired filename (example: 'save vectors.csv' to save vector memory in a CSV file\n");
+        printf("Type 'load' followed by the CSV filepath (example: 'load vectors.csv') to load a CSV file into vector memory. Filname must not contain spaces.\n");
+        printf("Type 'save' followed by desired filename (example: 'save vectors.csv') to save vector memory in a CSV file. Filname must not contain spaces.\n");
         printf("Type 'list' to list vectors in memory\n");
         printf("Type 'clear' to clear vector memory\n");
         printf("Use 'a + b', 'a - b', 'a * 2', '2 * a', 'a dot b', or 'a cross b'\n");
@@ -82,9 +82,9 @@ int main(int argc, char *argv[])
                 }
 
                 //List command
-                if (strcmp(token1, "load") == 0)
+                else if (strcmp(token1, "load") == 0)
                 {
-                    printf("Note: Contents of CSV will be added to existing storage\n");
+                    printf("Note: Contents of CSV will replace existing storage\n");
 
                     if (token2 == NULL || token3 != NULL)
                     {
@@ -92,19 +92,26 @@ int main(int argc, char *argv[])
                     }
                     else
                     {
-                        if (loadFile(token2) == 1)
+                        int error = loadFile(token2);
+                        if (error == 1)
                         {
-                            printf ("Error: could not load file because file does not exist\n");
+                            printf ("Error: File not found\n");
+                        }
+                        else if (error == 2)
+                        {
+                            printf("Error: CSV file not properly formatted\n");
+                            printf("Vector storage cleared.\n");
                         }
                         else
                         {
-                            
+                            printf("Vector storage cleared!\n");
+                            printf("'%s' added to vector storage!\n", token2);
                         }
                     }
                 }
 
                 //Save command
-                if (strcmp(token1, "save") == 0)
+                else if (strcmp(token1, "save") == 0)
                 {
                     printf("Note: Contents of file will be overwritten\n");
                     if (token2 == NULL || token3 != NULL)
@@ -113,7 +120,15 @@ int main(int argc, char *argv[])
                     }
                     else
                     {
-                        saveFile(token2);
+                        int error = saveFile(token2);
+                        if (error == 1)
+                        {
+                            printf ("Error: Unable to write to file\n");
+                        }
+                        else
+                        {
+                            printf("'%s' created!\n", token2);
+                        }
                     }
                 }
 
@@ -121,8 +136,8 @@ int main(int argc, char *argv[])
                 else if (strcmp(token1, "-h") == 0)
                 {
                     printf("Type 'quit' to quit\n");
-                    printf("Type 'load' followed by the CSV filepath (example: 'load vectors.csv') to load a CSV file into vector memory\n");                    printf("Type 'save' to save vector memory in a CSV file\n");
-                    printf("Type 'save' followed by desired filename (example: 'save vectors.csv' to save vector memory in a CSV file\n");
+                    printf("Type 'load' followed by the CSV filepath (example: 'load vectors.csv') to load a CSV file into vector memory. Filname must not contain spaces.\n");
+                    printf("Type 'save' followed by desired filename (example: 'save vectors.csv') to save vector memory in a CSV file. Filname must not contain spaces.\n");
                     printf("Type 'list' to list vectors in memory\n");
                     printf("Type 'clear' to clear vector memory\n");
                     printf("Use 'a + b', 'a - b', 'a * 2', '2 * a', 'a dot b', or 'a cross b'\n");

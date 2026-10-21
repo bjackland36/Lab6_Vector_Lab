@@ -9,6 +9,7 @@ Description: Header file for file_parser.c
 #define FILE_PARSER_H
 
 #include <stdio.h>
+#include <string.h>
 #include "vector_data.h"
 #include "vector.h"
 
